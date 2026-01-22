@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Result Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Result Management System</h1>
+
+    <form id="resultForm">
+        <input type="text" id="studentName" placeholder="Student Name" required>
+        <input type="text" id="matricNumber" placeholder="Matric Number" required>
+        <input type="number" id="testScore" placeholder="Test Score" required>
+        <input type="number" id="examScore" placeholder="Exam Score" required>
+        <button type="submit">Add Result</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Matric No</th>
+                <th>Total</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody id="resultTable"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
