@@ -1,9 +1,41 @@
+
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Student Result Management System</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form input, button {
+            margin: 5px;
+            padding: 8px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Student Result Management System</h1>
@@ -28,6 +60,55 @@
         <tbody id="resultTable"></tbody>
     </table>
 
-    <script src="script.js"></script>
+    <script>
+        // Your default data
+        const defaultStudent = {
+            name: "Cyril-Urude Mirabeth",
+            matric: "24/15531",
+            testScore: 28,   // example test score
+            examScore: 55    // example exam score
+        };
+
+        // Function to calculate grade
+        function calculateGrade(total) {
+            if (total >= 70) return "A";
+            else if (total >= 60) return "B";
+            else if (total >= 50) return "C";
+            else if (total >= 45) return "D";
+            else return "F";
+        }
+
+        // Function to add student to table
+        function addStudentToTable(student) {
+            const totalScore = student.testScore + student.examScore;
+            const grade = calculateGrade(totalScore);
+
+            const table = document.getElementById("resultTable");
+            const row = table.insertRow();
+
+            row.insertCell(0).innerHTML = student.name;
+            row.insertCell(1).innerHTML = student.matric;
+            row.insertCell(2).innerHTML = totalScore;
+            row.insertCell(3).innerHTML = grade;
+        }
+
+        // Add default student immediately when page loads
+        addStudentToTable(defaultStudent);
+
+        // Event listener for form submission
+        document.getElementById("resultForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const student = {
+                name: document.getElementById("studentName").value,
+                matric: document.getElementById("matricNumber").value,
+                testScore: parseInt(document.getElementById("testScore").value),
+                examScore: parseInt(document.getElementById("examScore").value)
+            };
+
+            addStudentToTable(student);
+            document.getElementById("resultForm").reset();
+        });
+    </script>
 </body>
 </html>
